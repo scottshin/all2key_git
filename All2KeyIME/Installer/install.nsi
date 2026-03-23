@@ -4,7 +4,7 @@
 !define PRODUCT_NAME "All2KeyIME"
 !define COMPANY_NAME "CallAnswer"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
-!define RELVERSION      "0.1.2"
+!define RELVERSION      "0.1.6"
 !define APPNAME         "All2key ${RELVERSION}"
 
 ; MUI 1.67 compatible ------
