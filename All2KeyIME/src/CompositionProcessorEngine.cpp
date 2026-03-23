@@ -251,32 +251,37 @@ Exit:
 //     State of Text Processor Engine.
 //----------------------------------------------------------------------------
 
-BOOL CCompositionProcessorEngine::AddVirtualKey(WCHAR wch)
+BOOL CCompositionProcessorEngine::AddVirtualKey(WCHAR *wch)
 {
-    if (!wch)
+    if (wch == 0)
     {
         return FALSE;
     }
 
-    //
-    // append one keystroke in buffer.
-    //
-    DWORD_PTR srgKeystrokeBufLen = _keystrokeBuffer.GetLength();
-    PWCHAR pwch = new (std::nothrow) WCHAR[ srgKeystrokeBufLen + 1 ];
-    if (!pwch)
+    size_t len = wcslen(wch);
+    DebugLogFile( L"             AddVirtualKey length wch %d  \n", len);
+    for ( int i =0; i < len; i++)
     {
-        return FALSE;
+                //
+                // append one keystroke in buffer.
+                //
+                DWORD_PTR srgKeystrokeBufLen = _keystrokeBuffer.GetLength();
+                PWCHAR pwch = new (std::nothrow) WCHAR[ srgKeystrokeBufLen + 1 ];
+                if ( !pwch )
+                {
+                    return FALSE;
+                }
+                else
+                {
+                    memcpy(pwch, _keystrokeBuffer.Get(), srgKeystrokeBufLen * sizeof(WCHAR));
+                    pwch[ srgKeystrokeBufLen ] = *(wch+i);
+                    if (_keystrokeBuffer.Get())
+                    {
+                        delete [] _keystrokeBuffer.Get();
+                    }
+                    _keystrokeBuffer.Set(pwch, srgKeystrokeBufLen + 1);
+                }
     }
-
-    memcpy(pwch, _keystrokeBuffer.Get(), srgKeystrokeBufLen * sizeof(WCHAR));
-    pwch[ srgKeystrokeBufLen ] = wch;
-
-    if (_keystrokeBuffer.Get())
-    {
-        delete [] _keystrokeBuffer.Get();
-    }
-
-    _keystrokeBuffer.Set(pwch, srgKeystrokeBufLen + 1);
 
     return TRUE;
 }

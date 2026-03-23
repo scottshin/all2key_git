@@ -1,6 +1,0 @@
-﻿C:\Program Files\Microsoft Visual Studio\18\Insiders\MSBuild\Microsoft\VC\v180\Microsoft.CppBuild.targets(548,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(SampleIME.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  TableDictionaryEngine.cpp
-ActiveLanguageProfileNotifySink.obj : warning LNK4075: '/EDITANDCONTINUE'이(가) '/INCREMENTAL:NO' 사양으로 인해 무시됩니다.
-     F:\All2KeyIME\x64\Debug\All2KeyIME.lib 라이브러리 및 F:\All2KeyIME\x64\Debug\All2KeyIME.exp 개체를 생성하고 있습니다.
-All2KeyIME.exp : warning LNK4070: /OUT: .EXP의 SampleIME.dll 지시문이 'F:\All2KeyIME\x64\Debug\All2KeyIME.dll' 출력 파일 이름과 다릅니다. 지시문이 무시됩니다.
-  All2KeyIME.vcxproj -> F:\All2KeyIME\x64\Debug\All2KeyIME.dll

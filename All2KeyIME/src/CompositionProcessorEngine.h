@@ -38,7 +38,7 @@ public:
 
     BOOL IsVirtualKeyNeed(UINT uCode, _In_reads_(1) WCHAR *pwch, BOOL fComposing, CANDIDATE_MODE candidateMode, BOOL hasCandidateWithWildcard, _Out_opt_ _KEYSTROKE_STATE *pKeyState);
 
-    BOOL AddVirtualKey(WCHAR wch);
+    BOOL AddVirtualKey(WCHAR * wch);
     void RemoveVirtualKey(DWORD_PTR dwIndex);
     void PurgeVirtualKey();
 

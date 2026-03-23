@@ -137,17 +137,23 @@ HRESULT CSampleIME::_HandleCancel(TfEditCookie ec, _In_ ITfContext *pContext)
 }
 
 
-wchar_t table_alpha[] = {
-    0x304B, 0x3063, 0x3060, 0x305F, 0x3089, 0x3007, 0x306F,
-    0x3048, 0x3046, 0x3042, 0x3044, 0x3046, 0x3092, 0x304A, 0x3088, 0x308F,
-    0x3094, 0x307E, 0x3055, 0x3071, 0x3084, 0x3070, 0x306A, 0x3056, 0x3093, 0x304C
+wchar_t *table_alpha[] = {
+    // 0x304B, 0x3063, 0x3060, 0x305F, 0x3089, 0x3007, 0x306F,
+    // 0x3048, 0x3046, 0x3042, 0x3044, 0x3046, 0x3092, 0x304A, 0x3088, 0x308F,
+    // 0x3094, 0x307E, 0x3055, 0x3071, 0x3084, 0x3070, 0x306A, 0x3056, 0x3093, 0x304C
 
 	// L'か', L'っ', L'だ', L'た', L'ら', L'〇', L'は',					// a, b, c, d, e, f, g 
 	// L'え', L'う', L'あ', L'い', L'う', L'を', L'お', L'よ', L'わ',		//h, i, j, k, l, m, n, o, p,
 	// L'ゔ', L'ま', L'さ', L'ぱ', L'や', L'ば', L'な', L'ざ', L'ん', L'が'//qrstuvwxyz
+
+
+    L"\u304B", L"\u3063", L"\u3060", L"\u305F", L"\u3089", L"\u3007", L"\u306F",
+    L"\u3048", L"\u3046", L"\u3042", L"\u3044", L"\u3046", L"\u3092", L"\u304A", L"\u3088", L"\u308F",
+    L"\u3094", L"\u307E", L"\u3055", L"\u3071", L"\u3084", L"\u3070", L"\u306A", L"\u3056", L"\u3093", L"\u304C"
+
 };
 
-const wchar_t* conv_table[] = {
+wchar_t* conv_table[] = {
     L"\u304B", L"\u304D", L"\u304F", L"\u3051", L"\u3053", L"\u304D\u3083", L"\u304D\u3085", L"\u304D\u3087", // か,き,く,け,こ,きゃ,きゅ,きょ
 
     L"\u304C", L"\u304E", L"\u3050", L"\u3052", L"\u3054", L"\u304E\u3083", L"\u304E\u3085", L"\u304E\u3087", // が,ぎ,ぐ,げ,ご,ぎゃ,ぎゅ,ぎょ
@@ -271,66 +277,79 @@ bool is_shfited( int ascii )
         'I' == ascii || 'O' == ascii || 'P' == ascii );
 }
 
-WCHAR get_shift_convert ( int shift_key )
+wchar_t *get_shift_convert ( int shift_key )
 {
-    WCHAR ret = 0x0;
+    // wchar_t ret = 0x0;
+    // switch (shift_key)
+    // {
+    //     case 'B': ret = 0x3063; break; // っ
+    //     case 'N': ret = 0x3049; break; // ぉ
+    //     case 'M': ret = 0x3092; break; //を
+    //     case 'H': ret = 0x3047; break; //ぇ
+    //     case 'J': ret = 0x3041; break; //ぁ
+    //     case 'K': ret = 0x3043; break; //ぃ
+    //     case 'L': ret = 0x3045; break; //ぅ
+    //     case 'Y': ret = 0x3093; break; //ん
+    //     case 'U': ret = 0x3083; break; //ゃ
+    //     case 'I': ret = 0x3085; break; //ゅ
+    //     case 'O': ret = 0x3087; break; //ょ
+    //     case 'P': ret = 0x308E; break; //ゎ
+    // }
+
+    wchar_t *ret = 0x0;
     switch (shift_key)
     {
-        case 'B': ret = 0x3063; break; // っ
-        case 'N': ret = 0x3049; break; // ぉ
-        case 'M': ret = 0x3092; break; //を
-        case 'H': ret = 0x3047; break; //ぇ
-        case 'J': ret = 0x3041; break; //ぁ
-        case 'K': ret = 0x3043; break; //ぃ
-        case 'L': ret = 0x3045; break; //ぅ
-        case 'Y': ret = 0x3093; break; //ん
-        case 'U': ret = 0x3083; break; //ゃ
-        case 'I': ret = 0x3085; break; //ゅ
-        case 'O': ret = 0x3087; break; //ょ
-        case 'P': ret = 0x308E; break; //ゎ
+        case 'B': ret = L"\u3063"; break; // っ
+        case 'N': ret = L"\u3049"; break; // ぉ
+        case 'M': ret = L"\u3092"; break; //を
+        case 'H': ret = L"\u3047"; break; //ぇ
+        case 'J': ret = L"\u3041"; break; //ぁ
+        case 'K': ret = L"\u3043"; break; //ぃ
+        case 'L': ret = L"\u3045"; break; //ぅ
+        case 'Y': ret = L"\u3093"; break; //ん
+        case 'U': ret = L"\u3083"; break; //ゃ
+        case 'I': ret = L"\u3085"; break; //ゅ
+        case 'O': ret = L"\u3087"; break; //ょ
+        case 'P': ret = L"\u308E"; break; //ゎ
     }
 
 	return (ret);
 
 }
 
-WCHAR get_convert(WCHAR lastChar, int vowel_asc_key)
+wchar_t *get_convert(wchar_t* lastChar, int vowel_asc_key)
 {
 	int inx = 0;
 
 	WCHAR arr[] = { 'j', 'k', 'l', 'h', 'n', 'u', 'i', 'o' };       // 후타. 
 	for (int i = 0; i <= 7; i++)
 	{
-		if (vowel_asc_key == arr[i])
-		{
+		if (vowel_asc_key == arr[i]) {
 			inx = i;
 			break;
 		}
 	}
 
-    WCHAR ret = 0x0;
-    switch (lastChar)
+    wchar_t *ret = 0; 
+    switch ( lastChar[0] )
     {
-        case 0x304B: /* か */ ret = conv_table[ 0 + inx][0]; break;
-        case 0x304C: /* が */ ret = conv_table[ 8 + inx][0]; break;
-        case 0x3055: /* さ */ ret = conv_table[16 + inx][0]; break;
-        case 0x3056: /* ざ */ ret = conv_table[24 + inx][0]; break;
-        case 0x305F: /* た */ ret = conv_table[32 + inx][0]; break;
-        case 0x3060: /* だ */ ret = conv_table[40 + inx][0]; break;
-        case 0x306A: /* な */ ret = conv_table[48 + inx][0]; break;
-        case 0x306F: /* は */ ret = conv_table[56 + inx][0]; break;
-        case 0x3070: /* ば */ ret = conv_table[64 + inx][0]; break;
-        case 0x3071: /* ぱ */ ret = conv_table[72 + inx][0]; break;
-        case 0x307E: /* ま */ ret = conv_table[80 + inx][0]; break;
-        case 0x3089: /* ら */ ret = conv_table[88 + inx][0]; break;
-        case 0x3094: /* ゔ */ ret = conv_table[96 + inx][0]; break;
+        case 0x304B: /* か */ ret = conv_table  [ 0 + inx]; break;
+        case 0x304C: /* が */ ret = conv_table  [ 8 + inx]; break;
+        case 0x3055: /* さ */ ret = conv_table  [16 + inx]; break;
+        case 0x3056: /* ざ */ ret = conv_table  [24 + inx]; break;
+        case 0x305F: /* た */ ret = conv_table  [32 + inx]; break;
+        case 0x3060: /* だ */ ret = conv_table  [40 + inx]; break;
+        case 0x306A: /* な */ ret = conv_table  [48 + inx]; break;
+        case 0x306F: /* は */ ret = conv_table  [56 + inx]; break;
+        case 0x3070: /* ば */ ret = conv_table  [64 + inx]; break;
+        case 0x3071: /* ぱ */ ret = conv_table  [72 + inx]; break;
+        case 0x307E: /* ま */ ret = conv_table  [80 + inx]; break;
+        case 0x3089: /* ら */ ret = conv_table  [88 + inx]; break;
+        case 0x3094: /* ゔ */ ret = conv_table  [96 + inx]; break;
         case 0x3007: /* 〇 */ ret = table_alpha[vowel_asc_key - 'a']; break;
     }
-
 	return (ret);
 }
-
-
 
 WCHAR FirstToHiragana(WCHAR consonant)
 {
@@ -472,7 +491,7 @@ HRESULT CSampleIME::_HandleCompositionInput(TfEditCookie ec, _In_ ITfContext *pC
     BOOL isCovered = TRUE;
 
 
-DebugLogFile( L"_HandleInput  PP  key %x\n", wch );
+DebugLogFile( L"__HandleCompositionInput  PP  key %x\n", wch );
     CCompositionProcessorEngine* pCompositionProcessorEngine = nullptr;
     pCompositionProcessorEngine = _pCompositionProcessorEngine;
 
@@ -496,6 +515,8 @@ DebugLogFile( L"      pass 3\n");
     // first, test where a keystroke would go in the document if we did an insert
     if (pContext->GetSelection(ec, TF_DEFAULT_SELECTION, 1, &tfSelection, &fetched) != S_OK || fetched != 1)
     {
+
+        DebugLogFile( L"    return false.  pass 3\n"); 
         return S_FALSE;
     }
 
@@ -506,10 +527,10 @@ DebugLogFile( L"      pass 3\n");
   // ===============================
 
     //static ITfRange* pCompositionRange = nullptr;  // 조합 범위
-    WCHAR outputChar = 0;
+    wchar_t *outputChar = 0;
     bool restartComposition = false; 
 
-    DebugLogFile( L"_HandleInput  key %x, last %x\n", wch, lastChar);
+    DebugLogFile( L"_HandleCompositionInput  my key %x, last %x\n", wch, lastChar);
 
     // 첫타 입력
     if (is_first(wch))
@@ -553,12 +574,12 @@ DebugLogFile( L"      pass 3\n");
             lastChar = 0;
             restartComposition = true;  // 🔴 기존 조합 치환(이렇게하면 치환은 되나 ms워드 고스트문자 )
         }
-        else        // 후타가 없는 상태
+        else   // 첫타가 없는?  후타가 없는 상태
         {
             //if (Global::IsShiftKeyDownOnly)
             if ( is_shfited(wch) )
             {
-                outputChar = get_shift_convert(  wch  );
+                outputChar =   get_shift_convert(  wch  );
                 lastChar = 0;
 
             } else {
@@ -653,7 +674,7 @@ DebugLogFile( L"      pass 3\n");
     DebugLogFile( L"             _pCompositionProcessorEngine addr  %x  \n", _pCompositionProcessorEngine);
     // 가짜 키 입력
 #if 1 // all2key
-    _pCompositionProcessorEngine->AddVirtualKey(outputChar);  // 이문자를 사용자가 타이핑한 것처럼 처리해라. 
+    _pCompositionProcessorEngine->AddVirtualKey(  outputChar /**(outputChar+1)*/ );  // 이문자를 사용자가 타이핑한 것처럼 처리해라. 
                                                               // 조합중이면 -> 조합문자열 처리 
                                                               // 조합중이 아니면 -> 새조합 시작 
 #else  // original 
