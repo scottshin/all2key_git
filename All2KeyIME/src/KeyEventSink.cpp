@@ -318,13 +318,20 @@ STDAPI CSampleIME::OnKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam,
 
     if (*pIsEaten)
     {
+
+
+
+
+
+
+
         bool needInvokeKeyHandler = true;
         //
         // Invoke key handler edit session
         //
         if (code == VK_ESCAPE)
         {
-            KeystrokeState.Category = CATEGORY_COMPOSING;
+           KeystrokeState.Category = CATEGORY_COMPOSING;
         }
 
         // Always eat THIRDPARTY_NEXTPAGE and THIRDPARTY_PREVPAGE keys, but don't always process them.

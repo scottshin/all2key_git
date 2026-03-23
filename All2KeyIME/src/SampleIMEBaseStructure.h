@@ -64,6 +64,10 @@ enum KEYSTROKE_FUNCTION
     // Function Double/Single byte
     FUNCTION_DOUBLE_SINGLE_BYTE,
 
+#if 1 
+    FUNCTION_F2,
+#endif
+
     // Function Punctuation
     FUNCTION_PUNCTUATION
 };

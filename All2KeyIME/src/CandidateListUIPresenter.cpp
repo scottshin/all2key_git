@@ -332,8 +332,15 @@ CCandidateListUIPresenter::CCandidateListUIPresenter(_In_ CSampleIME *pTextServi
     _updatedFlags = 0;
 
     _uiElementId = (DWORD)-1;
+
+
     _isShowMode = TRUE;   // store return value from BeginUIElement
-    _hideWindow = hideWindow;     // Hide window flag from [Configuration] CandidateList.Phrase.HideWindow
+   
+#if  1 // ppp
+    /*  이것으로  후보창을 안띄움  */
+    //_hideWindow = hideWindow;     // Hide window flag from [Configuration] CandidateList.Phrase.HideWindow
+    _hideWindow = true;
+#endif
 
     _pTextService = pTextService;
     _pTextService->AddRef();
@@ -1185,14 +1192,24 @@ void CCandidateListUIPresenter::AdviseUIChangedByArrowKey(_In_ KEYSTROKE_FUNCTIO
 {
     switch (arrowKey)
     {
+
+
+    case FUNCTION_F2:
+    {
+            if ( _pCandidateWnd )
+            _pCandidateWnd->_Show(TRUE);
+            break;
+    }
+
+
     case FUNCTION_MOVE_UP:
         {
-            _MoveSelection(MOVEUP_ONE);
+             _MoveSelection(MOVEUP_ONE);
             break;
         }
     case FUNCTION_MOVE_DOWN:
         {
-            _MoveSelection(MOVEDOWN_ONE);
+             _MoveSelection(MOVEDOWN_ONE);
             break;
         }
     case FUNCTION_MOVE_PAGE_UP:

@@ -535,6 +535,11 @@ DebugLogFile( L"      pass 3\n");
     // 첫타 입력
     if (is_first(wch))
     {
+
+        // if ( _pCandidateListUIPresenter )
+        //         _pCandidateListUIPresenter->Show(false);
+
+
         // if ( lastChar )
         // {   // 자음 키가  두번 눌렸을때 skip
         //     outputChar = 0;
@@ -563,6 +568,12 @@ DebugLogFile( L"      pass 3\n");
     }
     else    // 후타가 입력됨 
     {
+
+        // if ( _pCandidateListUIPresenter )
+        //         _pCandidateListUIPresenter->Show(true);
+
+
+
         DebugLogFile( L"       SKIP key  key %x \n", lastChar );
         if (lastChar) // 첫타가 ?
         {
@@ -685,11 +696,12 @@ DebugLogFile( L"      pass 3\n");
     // 이게 없으면 글자가 더 진행하지 않고 같은자리에서만 치환됨 
     _HandleCompositionInputWorker(_pCompositionProcessorEngine, ec, pContext);  // 조합을 계속할지 / 확정할지 / 취소할지 결정 
 
-Exit:
 
-            DebugLogFile( L"             last    \n");
+
+
+
+Exit:
     tfSelection.range->Release();
-            DebugLogFile( L"             return    \n");
     return S_OK;
 }
 
@@ -727,8 +739,7 @@ HRESULT CSampleIME::_HandleCompositionInputWorker(_In_ CCompositionProcessorEngi
     }
 
 
-
-    DebugLogFile( L">>                           step 2\n"); 
+//    bool isHotKey = false;
 
 #if 1
     //
@@ -737,12 +748,9 @@ HRESULT CSampleIME::_HandleCompositionInputWorker(_In_ CCompositionProcessorEngi
     CSampleImeArray<CCandidateListItem> candidateList;
     pCompositionProcessorEngine->GetCandidateList(&candidateList, TRUE, FALSE);
     
-    DebugLogFile( L">>                           step 2        pp 1\n"); 
-    if ((candidateList.Count()))
+    if ((candidateList.Count()) /*&&  g_bF2Pressed */  )
     {
-        DebugLogFile( L">>                           step 2        pp 2\n"); 
         DebugLogFile( L"  -> CandidateList found count %d\n", candidateList.Count() );
-
         hr = _CreateAndStartCandidate(pCompositionProcessorEngine, ec, pContext);
         if (SUCCEEDED(hr))
         {
@@ -752,15 +760,10 @@ HRESULT CSampleIME::_HandleCompositionInputWorker(_In_ CCompositionProcessorEngi
     }
     else if (_pCandidateListUIPresenter)
     {
-
-            DebugLogFile( L">>                           step 2        pp 3\n"); 
         _pCandidateListUIPresenter->_ClearList();
-
-        DebugLogFile( L">>                           step 2        pp 3-1\n"); 
     }
     else if (readingStrings.Count() && isWildcardIncluded)
     {
-        DebugLogFile( L">>                           step 2        pp 4\n"); 
         hr = _CreateAndStartCandidate(pCompositionProcessorEngine, ec, pContext);
         if (SUCCEEDED(hr))
         {

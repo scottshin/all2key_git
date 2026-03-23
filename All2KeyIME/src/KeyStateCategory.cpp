@@ -105,6 +105,11 @@ HRESULT CKeyStateCategory::KeyStateHandler(KEYSTROKE_FUNCTION function, KeyHandl
     case FUNCTION_BACKSPACE:
         return HandleKeyBackspace(dto);
 
+#if 1 
+    case FUNCTION_F2:
+        return HandleKeyArrow(dto);
+#endif
+
     case FUNCTION_MOVE_LEFT:
     case FUNCTION_MOVE_RIGHT:
         return HandleKeyArrow(dto);

@@ -19,6 +19,9 @@ LONG dllRefCount = -1;
 CRITICAL_SECTION CS;
 HFONT defaultlFontHandle;				// Global font object we use everywhere
 
+
+bool g_bF2Pressed = false;
+
 //---------------------------------------------------------------------
 // SampleIME CLSID
 //---------------------------------------------------------------------
