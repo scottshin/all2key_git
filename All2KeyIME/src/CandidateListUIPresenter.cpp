@@ -577,6 +577,7 @@ STDAPI CCandidateListUIPresenter::GetCount(UINT *pCandidateCount)
 
 STDAPI CCandidateListUIPresenter::GetSelection(UINT *pSelectedCandidateIndex)
 {
+
     if (_pCandidateWnd)
     {
         *pSelectedCandidateIndex = _pCandidateWnd->_GetSelection();
@@ -670,6 +671,8 @@ STDAPI CCandidateListUIPresenter::GetCurrentPage(UINT *puPage)
 
 STDAPI CCandidateListUIPresenter::SetSelection(UINT nIndex)
 {
+
+
     if (_pCandidateWnd)
     {
         _pCandidateWnd->_SetSelection(nIndex);
@@ -1193,14 +1196,14 @@ void CCandidateListUIPresenter::AdviseUIChangedByArrowKey(_In_ KEYSTROKE_FUNCTIO
     switch (arrowKey)
     {
 
-
+#if 1
     case FUNCTION_F2:
     {
             if ( _pCandidateWnd )
-            _pCandidateWnd->_Show(TRUE);
+                    _pCandidateWnd->_Show(TRUE);
             break;
     }
-
+#endif
 
     case FUNCTION_MOVE_UP:
         {

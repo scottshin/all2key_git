@@ -137,18 +137,14 @@ HRESULT CSampleIME::_HandleCancel(TfEditCookie ec, _In_ ITfContext *pContext)
 }
 
 
-wchar_t *table_alpha[] = {
-    // 0x304B, 0x3063, 0x3060, 0x305F, 0x3089, 0x3007, 0x306F,
-    // 0x3048, 0x3046, 0x3042, 0x3044, 0x3046, 0x3092, 0x304A, 0x3088, 0x308F,
-    // 0x3094, 0x307E, 0x3055, 0x3071, 0x3084, 0x3070, 0x306A, 0x3056, 0x3093, 0x304C
+//i
 
-	// L'か', L'っ', L'だ', L'た', L'ら', L'〇', L'は',					// a, b, c, d, e, f, g 
-	// L'え', L'う', L'あ', L'い', L'う', L'を', L'お', L'よ', L'わ',		//h, i, j, k, l, m, n, o, p,
-	// L'ゔ', L'ま', L'さ', L'ぱ', L'や', L'ば', L'な', L'ざ', L'ん', L'が'//qrstuvwxyz
-
-
+wchar_t *table_O_alpha[] = {
+	// L'か', L'っ', L'だ', L'た', L'ら', L'〇', L'は',					    // a, b, c, d, e, f, g 
+	// L'え', L'ゆ', L'あ', L'い', L'う', L'を', L'お', L'よ', L'わ',		 // h, i, j, k, l, m, n, o, p,
+	// L'ゔ', L'ま', L'さ', L'ぱ', L'や', L'ば', L'な', L'ざ', L'ん', L'が'   //qrstuvwxyz
     L"\u304B", L"\u3063", L"\u3060", L"\u305F", L"\u3089", L"\u3007", L"\u306F",
-    L"\u3048", L"\u3046", L"\u3042", L"\u3044", L"\u3046", L"\u3092", L"\u304A", L"\u3088", L"\u308F",
+    L"\u3048", L"\u3086", L"\u3042", L"\u3044", L"\u3046", L"\u3092", L"\u304A", L"\u3088", L"\u308F",
     L"\u3094", L"\u307E", L"\u3055", L"\u3071", L"\u3084", L"\u3070", L"\u306A", L"\u3056", L"\u3093", L"\u304C"
 
 };
@@ -163,8 +159,7 @@ wchar_t* conv_table[] = {
     L"\u3056", L"\u3058", L"\u305A", L"\u305C", L"\u305E", L"\u3058\u3083", L"\u3058\u3085", L"\u3058\u3087",  // ざ,じ,ず, ぜ,  ぞ, じゃ, じゅ, じょ 
 
 
-
-    L"\u305F",                 // た
+    L"\u305F",                 // た,
     L"\u3061",                 // ち
     L"\u3064",                 // つ
     L"\u3066",                 // て
@@ -236,15 +231,10 @@ wchar_t* conv_table[] = {
     L"\u308A\u3085",           // りゅ
     L"\u308A\u3087",           // りょ
 
-    L"\u3094\u3041",           // ゔぁ
-    L"\u3094\u3043",           // ゔぃ
-    L"\u3094",                 // ゔ
-    L"\u3094\u3047",           // ゔぇ
-    L"\u3094\u3049",           // ゔぉ
-    L"\u3094\u3083",           // ゔゃ
-    L"\u3094\u3085",           // ゔゅ
-    L"\u3094\u3087",           // ゔょ
+    // Q
+    L"\u3094\u3041", L"\u3094\u3043", L"\u3094", L"\u3094\u3047", L"\u3094\u3049", L"\u3094\u3083", L"\u3094\u3085", L"\u3094\u3087",  // ゔぁ, ゔぃ, ゔ, ゔぇ,  ゔぉ, ゔゃ,  ゔゅ,  ゔょ  
 
+    // J
     L"\u3042", L"\u3044", L"\u3046", L"\u3048", L"\u304A", L"\u3084", L"\u3086", L"\u3088"                 // あ,い,う,え,お,や,ゆ,よ
     
 };
@@ -253,7 +243,15 @@ wchar_t* conv_table[] = {
 
 bool is_first(int ascii)
 {
+
+
 	return (
+
+        // numbers 
+        '1'==ascii || '2' == ascii || '3' == ascii || '4' == ascii || '5' == ascii ||
+        '6'==ascii || '7' == ascii || '8' == ascii || '9' == ascii || '0' == ascii ||
+
+
 		'q' == ascii ||
 		'w' == ascii || 'e' == ascii || 'r' == ascii || 't' == ascii ||
 		'a' == ascii || 's' == ascii || 'd' == ascii || 'f' == ascii || 'g' == ascii ||
@@ -317,7 +315,7 @@ wchar_t *get_shift_convert ( int shift_key )
 
 }
 
-wchar_t *get_convert(wchar_t* lastChar, int vowel_asc_key)
+wchar_t *get_convert(wchar_t* firstChar, int vowel_asc_key)
 {
 	int inx = 0;
 
@@ -331,7 +329,7 @@ wchar_t *get_convert(wchar_t* lastChar, int vowel_asc_key)
 	}
 
     wchar_t *ret = 0; 
-    switch ( lastChar[0] )
+    switch ( firstChar[0] )
     {
         case 0x304B: /* か */ ret = conv_table  [ 0 + inx]; break;
         case 0x304C: /* が */ ret = conv_table  [ 8 + inx]; break;
@@ -346,7 +344,9 @@ wchar_t *get_convert(wchar_t* lastChar, int vowel_asc_key)
         case 0x307E: /* ま */ ret = conv_table  [80 + inx]; break;
         case 0x3089: /* ら */ ret = conv_table  [88 + inx]; break;
         case 0x3094: /* ゔ */ ret = conv_table  [96 + inx]; break;
-        case 0x3007: /* 〇 */ ret = table_alpha[vowel_asc_key - 'a']; break;
+
+        case 0x3007: /* 〇 */ ret = table_O_alpha[vowel_asc_key - 'a']; break;
+//      case 0x3007: /* 〇 */ ret = conv_table[104 + inx ]; break;
     }
 	return (ret);
 }
@@ -535,11 +535,6 @@ DebugLogFile( L"      pass 3\n");
     // 첫타 입력
     if (is_first(wch))
     {
-
-        // if ( _pCandidateListUIPresenter )
-        //         _pCandidateListUIPresenter->Show(false);
-
-
         // if ( lastChar )
         // {   // 자음 키가  두번 눌렸을때 skip
         //     outputChar = 0;
@@ -551,7 +546,11 @@ DebugLogFile( L"      pass 3\n");
             lastChar = wch;
 
             // 키를 바꾼다. 
-            outputChar = get_convert(  table_alpha[lastChar-'a'], wch  );
+#if 0
+            outputChar = get_convert(  table_O_alpha[lastChar-'a'], wch  );
+#else
+            outputChar  = table_O_alpha[wch - 'a'];
+#endif 
             restartComposition = true;   // 🔴 기존 조합(이렇게하면 치환은 되나..ms워드에 고스트문자 발생)
             DebugLogFile( L"             reset first key \n");
         }
@@ -561,7 +560,7 @@ DebugLogFile( L"      pass 3\n");
             lastChar = wch;
             //outputChar = FirstToHiragana(wch); // k → か
         
-            outputChar  = table_alpha[wch - 'a'];
+            outputChar  = table_O_alpha[wch - 'a'];
             restartComposition = false;
             DebugLogFile( L"             set first key \n");
         }
@@ -572,15 +571,13 @@ DebugLogFile( L"      pass 3\n");
         // if ( _pCandidateListUIPresenter )
         //         _pCandidateListUIPresenter->Show(true);
 
-
-
-        DebugLogFile( L"       SKIP key  key %x \n", lastChar );
+        DebugLogFile( L"       SKIP key key 0x%x \n", lastChar );
         if (lastChar) // 첫타가 ?
         {
             // k → か 상태에서 e 입력
             //outputChar = VowelToHiragana(lastChar, wch); // → え
 
-            outputChar = get_convert(  table_alpha[lastChar-'a'], wch  );
+            outputChar = get_convert( /*first*/ table_O_alpha[lastChar-'a'],/*second*/ wch  );
             //outputChar = 0x304F;
             lastChar = 0;
             restartComposition = true;  // 🔴 기존 조합 치환(이렇게하면 치환은 되나 ms워드 고스트문자 )

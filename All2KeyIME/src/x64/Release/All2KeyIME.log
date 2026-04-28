@@ -1,128 +1,57 @@
 ﻿C:\Program Files\Microsoft Visual Studio\18\Insiders\MSBuild\Microsoft\VC\v180\Microsoft.CppBuild.targets(551,5): warning MSB8028: 중간 디렉터리(x64\Release\)에 다른 프로젝트(SampleIME.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
   ActiveLanguageProfileNotifySink.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'ActiveLanguageProfileNotifySink.cpp'을(를) 컴파일하는 중)
-  
   BaseDictionaryEngine.cpp
   BaseWindow.cpp
   ButtonWindow.cpp
   CandidateListUIPresenter.cpp
-F:\All2KeyIME\src\CandidateListUIPresenter.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'CandidateListUIPresenter.cpp'을(를) 컴파일하는 중)
-  
   CandidateWindow.cpp
   Compartment.cpp
   Composition.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'Composition.cpp'을(를) 컴파일하는 중)
-  
   CompositionProcessorEngine.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'CompositionProcessorEngine.cpp'을(를) 컴파일하는 중)
-  
   EnumTfCandidates.cpp
   KeyStateCategory.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'KeyStateCategory.cpp'을(를) 컴파일하는 중)
-  
   SampleIMEBaseStructure.cpp
   SearchCandidateProvider.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'SearchCandidateProvider.cpp'을(를) 컴파일하는 중)
-  
   DictionaryParser.cpp
 F:\All2KeyIME\src\DictionaryParser.cpp(245,30): warning C4244: '인수': 'DWORD_PTR'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   DictionarySearch.cpp
   DisplayAttribute.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'DisplayAttribute.cpp'을(를) 컴파일하는 중)
-  
   DisplayAttributeInfo.cpp
   DisplayAttributeProvider.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'DisplayAttributeProvider.cpp'을(를) 컴파일하는 중)
-  
   DllMain.cpp
   EditSession.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'EditSession.cpp'을(를) 컴파일하는 중)
-  
   컴파일하고 있습니다...
   EndComposition.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'EndComposition.cpp'을(를) 컴파일하는 중)
-  
   EnumDisplayAttributeInfo.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'EnumDisplayAttributeInfo.cpp'을(를) 컴파일하는 중)
-  
   File.cpp
   FileMapping.cpp
   FunctionProviderSink.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'FunctionProviderSink.cpp'을(를) 컴파일하는 중)
-  
   GetTextExtentEditSession.cpp
   Globals.cpp
   KeyEventSink.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'KeyEventSink.cpp'을(를) 컴파일하는 중)
-  
   KeyHandler.cpp
-F:\All2KeyIME\src\KeyHandler.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'KeyHandler.cpp'을(를) 컴파일하는 중)
-  
   KeyHandlerEditSession.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'KeyHandlerEditSession.cpp'을(를) 컴파일하는 중)
-  
   LanguageBar.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'LanguageBar.cpp'을(를) 컴파일하는 중)
-  
   Register.cpp
   RegKey.cpp
   ScrollBarWindow.cpp
   Server.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'Server.cpp'을(를) 컴파일하는 중)
-  
   ShadowWindow.cpp
   StartComposition.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'StartComposition.cpp'을(를) 컴파일하는 중)
-  
   TableDictionaryEngine.cpp
   SampleIME.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'SampleIME.cpp'을(를) 컴파일하는 중)
-  
   TextEditSink.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'TextEditSink.cpp'을(를) 컴파일하는 중)
-  
   컴파일하고 있습니다...
   TfInputProcessorProfile.cpp
   TfTextLayoutSink.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'TfTextLayoutSink.cpp'을(를) 컴파일하는 중)
-  
   ThreadFocusSink.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'ThreadFocusSink.cpp'을(를) 컴파일하는 중)
-  
   ThreadMgrEventSink.cpp
-F:\All2KeyIME\src\SampleIME.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  (소스 파일 'ThreadMgrEventSink.cpp'을(를) 컴파일하는 중)
-  
   TipCandidateList.cpp
   TipCandidateString.cpp
      F:\All2KeyIME\x64\Release\All2KeyIME.lib 라이브러리 및 F:\All2KeyIME\x64\Release\All2KeyIME.exp 개체를 생성하고 있습니다.
 All2KeyIME.exp : warning LNK4070: /OUT: .EXP의 SampleIME.dll 지시문이 'F:\All2KeyIME\x64\Release\All2KeyIME.dll' 출력 파일 이름과 다릅니다. 지시문이 무시됩니다.
   코드를 생성하고 있습니다.
-  Previous IPDB not found, fall back to full compilation.
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
   All 1644 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   코드를 생성했습니다.
 All2KeyIME.exp : warning LNK4070: /OUT: .EXP의 SampleIME.dll 지시문이 'F:\All2KeyIME\x64\Release\All2KeyIME.dll' 출력 파일 이름과 다릅니다. 지시문이 무시됩니다.

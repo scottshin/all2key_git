@@ -4,7 +4,7 @@
 !define PRODUCT_NAME "All2KeyIME"
 !define COMPANY_NAME "CallAnswer"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
-!define RELVERSION      "0.1.6"
+!define RELVERSION      "0.1.7"
 !define APPNAME         "All2key ${RELVERSION}"
 
 ; MUI 1.67 compatible ------
@@ -154,11 +154,11 @@ SectionEnd
 
 Function un.onUninstSuccess
   HideWindow
-  MessageBox MB_ICONINFORMATION|MB_OK "$(^Name)는(은) 완전히 제거되었습니다. 재부팅 권장"
+  MessageBox MB_ICONINFORMATION|MB_OK "$(^Name) uninstall"
 FunctionEnd
 
 Function un.onInit
-  MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "$(^Name)을(를) 제거하시겠습니까?" IDYES +2
+  MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "$(^Name) uninstall " IDYES +2
   Abort
 FunctionEnd
 
